@@ -16,9 +16,9 @@
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
-    <script src="../dist/gridstack.js"></script>
+    <script src="../src/gridstack.js"></script>
     <script src="../dist/gridstack.jQueryUI.js"></script>
 
     <style type="text/css">
@@ -58,7 +58,7 @@
         }
 
         .sidebar .grid-stack-item {
-            width: 200px;
+            width: 100px;
             height: 100px;
             border: 2px dashed green;
             text-align: center;
@@ -81,7 +81,8 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="sidebar">
-                    <div class="grid-stack-item"><div class="grid-stack-item-content">Drag me</div></div>
+                    <div class="grid-stack-item" data-gs-width="1" data-gs-height="2"><div class="grid-stack-item-content">Drag me 1</div></div>
+                    <div class="grid-stack-item" data-gs-width="6" data-gs-height="6"><div class="grid-stack-item-content">Drag me 2</div></div>
                 </div>
             </div>
             <div class="col-md-9">
@@ -110,7 +111,8 @@
                 float: false,
                 removable: '.trash',
                 removeTimeout: 100,
-                acceptWidgets: '.grid-stack-item'
+                acceptWidgets: '.grid-stack-item',
+                animate :true
             };
             $('#grid1').gridstack(options);
             $('#grid2').gridstack(_.defaults({
@@ -129,7 +131,7 @@
                 var grid = $(this).data('gridstack');
 
                 _.each(items, function (node) {
-                    grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+                    grid.addWidget($('<div><div class="grid-stack-item-content" /></div>'),
                         node.x, node.y, node.width, node.height);
                 }, this);
             });
@@ -138,7 +140,7 @@
                 revert: 'invalid',
                 handle: '.grid-stack-item-content',
                 scroll: false,
-                appendTo: 'body'
+                //appendTo: 'body'
             });
         });
     </script>
